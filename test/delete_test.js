@@ -3,10 +3,13 @@ const User = require("../src/user");
 
 describe("Delete a user", () => {
   let joe;
-  const assertion = () => {
-    User.findOne({name: "Joe"}, (user) => {
-      assert(user === null);
-    });
+  const assertion = (operation, done) => {
+    operation
+      .then(() => User.findOne({name: "Joe"}))
+      .then((user) => {
+        assert(user === null);
+        done();
+      })
   };
 
   beforeEach((done) => {
@@ -15,10 +18,8 @@ describe("Delete a user", () => {
       .then(() => done());
   });
 
-  it("should remove a  model instance", async () => {
-    await joe.remove();
-    const user = await User.findOne({name: "Joe"});
-    assert(user === null);
+  it("should remove a  model instance", (done) => {
+    assertion(joe.remove(), done);
     // joe.remove()
     //   .then(() => User.findOne({name: "Joe"}))
     //   .then((user) => {
@@ -27,20 +28,16 @@ describe("Delete a user", () => {
     //   })
   });
 
-  it ("should remove a class method", async () => {
-    await User.remove({name: "Joe"});
-    assertion();
+  it ("should remove a class method", (done) => {
+    assertion(User.remove({name: "Joe"}), done);
   });
 
-  it ("should remove a class method with findOneAndRemove", async () => {
-    await User.findOneAndRemove({name: "Joe"});
-    const user = await User.findOne({name: "Joe"});
-    assert(user === null);
+  it ("should remove a class method with findOneAndRemove", (done) => {
+    assertion(User.findOneAndRemove({name: "Joe"}), done);
   });
 
-  it("should remove a class method with findByIdAndRemove", async () => {
-    await User.findByIdAndRemove(joe._id);
-    assertion();
+  it("should remove a class method with findByIdAndRemove", (done) => {
+    assertion(User.findByIdAndRemove(joe._id), done);
   });
 
 });
