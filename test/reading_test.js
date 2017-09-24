@@ -1,7 +1,7 @@
 const User = require("../src/user");
 const assert = require("assert");
 
-describe("Find User", () => {
+describe("FIND RECORD(S)", () => {
   let joe;
   beforeEach((done) => {
     joe = new User({name: "Joe"});
@@ -21,7 +21,6 @@ describe("Find User", () => {
      })
   })
 });
-
 
 // User.find() returns an array of objects
 // User.findOne() returns an object
