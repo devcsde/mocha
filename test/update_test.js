@@ -1,11 +1,11 @@
 const assert = require("assert");
 const User = require("../src/user");
 
-describe("Update mongoDB records", () => {
+describe("UPDATE MONGODB", () => {
   let joe;
 
   beforeEach((done) => {
-    joe = new User({name: "Joe"});
+    joe = new User({name: "Joe", postCount: 0});
     joe.save()
       .then(() => done());
   });
@@ -39,5 +39,11 @@ describe("Update mongoDB records", () => {
 
   it("should update a model class with an ID", (done) => {
     assertion(User.findByIdAndUpdate(joe._id, {name: "Jane"}), done);
+  });
+
+  it("should increment postCount on users by one", async () => {
+    await User.update({name: "Joe"},{$inc: {postCount: 1}});
+    const user =  await User.findOne({name: "Joe"});
+    assert(user.postCount === 1);
   });
 });
