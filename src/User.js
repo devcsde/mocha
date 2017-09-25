@@ -12,10 +12,14 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Name is required."]
   },
   posts: [PostSchema],
-  postCount: Number
+  likes: Number
 });
 
-const User = mongoose.model("user", UserSchema); // user model is the user class
+UserSchema.virtual("postCount").get(function(){  //virtual types
+  return this.posts.length;
+});
+
+const User = mongoose.model("user", UserSchema); // user model is like the user class
 
 module.exports = User;
 
