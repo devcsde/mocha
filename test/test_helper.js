@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("../src/user");
+const User = require("../src/User");
 
 before((done) => {
   mongoose.connect("mongodb://localhost/users_test", {useMongoClient: true});
@@ -13,7 +13,7 @@ before((done) => {
 beforeEach((done) => {
   User.remove({}, ()=> {   // *1
     done();
-  });
+  })
 });
 
 

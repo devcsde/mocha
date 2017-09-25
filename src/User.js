@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const PostSchema = require("../src/Post");
 mongoose.Promise = global.Promise;
 
 const UserSchema = new mongoose.Schema({
@@ -10,6 +11,7 @@ const UserSchema = new mongoose.Schema({
     },
     required: [true, "Name is required."]
   },
+  posts: [PostSchema],
   postCount: Number
 });
 

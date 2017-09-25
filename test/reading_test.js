@@ -1,7 +1,7 @@
-const User = require("../src/user");
+const User = require("../src/User");
 const assert = require("assert");
 
-describe("FIND RECORD(S)", () => {
+describe("FIND RECORDS", () => {
   let joe;
   beforeEach((done) => {
     joe = new User({name: "Joe"});

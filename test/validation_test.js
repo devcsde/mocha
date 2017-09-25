@@ -1,5 +1,5 @@
 const assert = require("assert");
-const User = require("../src/user");
+const User = require("../src/User");
 
 describe("VALIDATE RECORDS", () => {
   it("should require the user name", () => {
@@ -24,5 +24,6 @@ describe("VALIDATE RECORDS", () => {
         assert.equal(message, "Name must be longer than 2 characters.");
         done();
       })
-  })
+  });
+
 });

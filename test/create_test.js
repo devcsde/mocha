@@ -1,14 +1,14 @@
-const User = require("../src/user");
+const User = require("../src/User");
 const assert = require("assert");
 
 describe("CREATE RECORDS", () => {
   it("should create a new user", (done) => {
     let joe = new User({name: "Joe"});
-    joe.save().then(() => {
+    joe.save()
+      .then(() => {
       assert(!joe.isNew); // *1 | if model is created, but not inserted into db yet
       done();             //      mongoose gives it the isNew attr
     })
-
   });
 });
 
