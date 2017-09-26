@@ -11,8 +11,17 @@ before((done) => {
 });
 
 beforeEach((done) => {
-  User.remove({}, ()=> {   // *1
-    done();
+  // User.remove({}, ()=> {   // *1
+  //   done();
+  // })
+  const { users, comments, blogposts } = mongoose.connection.collections;
+
+  users.drop(() => {
+    comments.drop(() => {
+      blogposts.drop(() => {
+        done();
+      });
+    })
   })
 });
 
