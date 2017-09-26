@@ -4,7 +4,7 @@
   "description": "simple db interactions",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec 'mocha'"
+    "test": "nodemon --exec 'mocha -R spec'"
   },
   "author": "devcs",
   "license": "ISC",

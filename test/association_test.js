@@ -24,7 +24,7 @@ describe("ASSOCIATIONS", () => {
   it("should show saved relation between user and a blogpost", async () => {
     const user = await User.findOne({name: "Joe"}).populate("blogPosts");
     assert(user.blogPosts[0].title === "Blog Post 1");
-    // User.findOne({name: "Joe"}).then((usere) => {
+    // User.findOne({name: "Joe"}).then((user) => {
     //   console.log(user);
     //   done();
     // });
